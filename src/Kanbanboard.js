@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
-import './Kanbanboard.css';
+import List from './List';
 
 class Kanbanboard extends Component {
+
   render() {
     return (
-      <div className="Kanbanboard">
-        <div className="Kanbanboard-header">
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="Kanbanboard-intro">
-          To get started, edit <code>src/Kanbanboard.js</code> and save to reload.
-        </p>
-        <div>
-          {this.props.cardsList.map( (item) => <p>Card: {item.title}</p> )}
-        </div>
+      <div className="app">
+        <List id="todo" title="To Do" cards={
+          this.props.cards.filter((card) => card.status === 'todo')
+        } label="To Do"/>
+
+        <List id="in-progress" title="In Progress" cards={
+          this.props.cards.filter((card) => card.status === 'in-progress')
+        } label="In progress" />
+
+        <List id="done" title="Done" cards={
+          this.props.cards.filter((card) => card.status === 'done')
+        } label="Done"/>
       </div>
     );
   }

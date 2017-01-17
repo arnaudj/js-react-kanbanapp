@@ -38,6 +38,6 @@ const cardsList = [
 ];
 
 ReactDOM.render(
-  <Kanbanboard cardsList={cardsList} />,
+  <Kanbanboard cards={cardsList} />,
   document.getElementById('root')
 );
