@@ -8,7 +8,7 @@ const cardsList = [
   {
     id: 1,
     title: "Read the Book",
-    description: "I should read the whole book",
+    description: "I should read the **whole** book. The complete source can be found at [github](https://github.com/pro-react)",
     status: "in-progress",
     tasks: []
   },
