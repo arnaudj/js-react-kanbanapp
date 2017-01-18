@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 class CheckList extends Component {
     render() {
@@ -23,6 +23,15 @@ class CheckList extends Component {
         </div>
         );
     }
-}
+};
+
+CheckList.propTypes = {
+    cardId: PropTypes.number.isRequired,
+    tasks: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        done: PropTypes.bool.isRequired,
+    }))
+};
 
 export default CheckList;

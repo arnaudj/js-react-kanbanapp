@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import List from './List';
 
 class Kanbanboard extends Component {
@@ -8,18 +8,22 @@ class Kanbanboard extends Component {
       <div className="app">
         <List id="todo" title="To Do" cards={
           this.props.cards.filter((card) => card.status === 'todo')
-        } label="To Do" />
+        } />
 
         <List id="in-progress" title="In Progress" cards={
           this.props.cards.filter((card) => card.status === 'in-progress')
-        } label="In progress" />
+        } />
 
         <List id="done" title="Done" cards={
           this.props.cards.filter((card) => card.status === 'done')
-        } label="Done" />
+        } />
       </div>
     );
   }
-}
+};
+
+Kanbanboard.propTypes = {
+  cards: PropTypes.arrayOf(PropTypes.object)
+};
 
 export default Kanbanboard;
