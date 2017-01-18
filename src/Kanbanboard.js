@@ -8,7 +8,7 @@ class Kanbanboard extends Component {
       <div className="app">
         <List id="todo" title="To Do" cards={
           this.props.cards.filter((card) => card.status === 'todo')
-        } label="To Do"/>
+        } label="To Do" />
 
         <List id="in-progress" title="In Progress" cards={
           this.props.cards.filter((card) => card.status === 'in-progress')
@@ -16,7 +16,7 @@ class Kanbanboard extends Component {
 
         <List id="done" title="Done" cards={
           this.props.cards.filter((card) => card.status === 'done')
-        } label="Done"/>
+        } label="Done" />
       </div>
     );
   }
