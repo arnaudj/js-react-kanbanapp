@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Kanbanboard from './Kanbanboard';
 import * as Constants from './Constants';
 import 'whatwg-fetch';
+import update from 'react-addons-update'
 
 class KanbanboardContainer extends Component {
     constructor(props) {
@@ -12,6 +13,7 @@ class KanbanboardContainer extends Component {
     }
 
     render() {
+        //console.log(this.state.cardsList[1]);
         return (
             <Kanbanboard
                 cards={this.state.cardsList}
@@ -32,8 +34,48 @@ class KanbanboardContainer extends Component {
         console.log('deleteTask ', cardId, ' / ', taskId, ' / ', taskIndex);
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     toggleTask(cardId, taskId, taskIndex) {
         console.log('toggleTask ', cardId, ' / ', taskId, ' / ', taskIndex);
+        let index = this.state.cardsList.findIndex((card) => card.id === cardId);
+
+        let nextState = update(this.state.cardsList, { // https://facebook.github.io/react/docs/update.html#update
+            [index]: {
+                tasks: {
+                    [taskIndex]: {
+                        done: {
+                            $apply: (isDone) => {
+                                return !isDone;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        );
+
+        this.setState({ cardsList: nextState });
     }
 
     componentDidMount() {
