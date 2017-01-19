@@ -1,3 +1,4 @@
+import 'babel-polyfill'; // for Array.prototype.find* (96k dependency!)
 import React from 'react';
 import ReactDOM from 'react-dom';
 import KanbanboardContainer from './KanbanboardContainer';
