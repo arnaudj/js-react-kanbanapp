@@ -28,40 +28,38 @@ class KanbanboardContainer extends Component {
 
     addTask(cardId, taskName) {
         console.log('addTask ', cardId, ' / ', taskName);
+        let newTask = { id: Date.now(), done: false, name: taskName }
+        let cardIndex = this.state.cardsList.findIndex((card) => card.id === cardId);
+        let nextState = update(this.state.cardsList, {
+            [cardIndex]: {
+                tasks: {
+                    $push: [newTask]
+                }
+            }
+        });
+        this.setState({ cardsList: nextState});
     }
 
     deleteTask(cardId, taskId, taskIndex) {
         console.log('deleteTask ', cardId, ' / ', taskId, ' / ', taskIndex);
+        let cardIndex = this.state.cardsList.findIndex((card) => card.id === cardId);
+
+        let nextState = update(this.state.cardsList, {
+            [cardIndex]: {
+                tasks: {
+                    $splice: [[taskIndex, 1]]
+                }
+            }
+        });
+        this.setState({ cardsList: nextState });
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     toggleTask(cardId, taskId, taskIndex) {
         console.log('toggleTask ', cardId, ' / ', taskId, ' / ', taskIndex);
-        let index = this.state.cardsList.findIndex((card) => card.id === cardId);
+        let cardIndex = this.state.cardsList.findIndex((card) => card.id === cardId);
 
         let nextState = update(this.state.cardsList, { // https://facebook.github.io/react/docs/update.html#update
-            [index]: {
+            [cardIndex]: {
                 tasks: {
                     [taskIndex]: {
                         done: {
