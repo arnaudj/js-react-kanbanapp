@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Kanbanboard from './Kanbanboard';
-import * as Constants from './Constants';
+import Constants from './Constants';
 import 'whatwg-fetch';
 import update from 'react-addons-update'
 
