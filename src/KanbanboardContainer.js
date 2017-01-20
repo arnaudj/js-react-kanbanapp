@@ -28,16 +28,33 @@ class KanbanboardContainer extends Component {
 
     addTask(cardId, taskName) {
         console.log('addTask ', cardId, ' / ', taskName);
+        const prevState = this.state;
+
+        // optimistic local update
         let newTask = { id: Date.now(), done: false, name: taskName }
         let cardIndex = this.state.cardsList.findIndex((card) => card.id === cardId);
-        let nextState = update(this.state.cardsList, {
+        let nextCards = update(this.state.cardsList, {
             [cardIndex]: {
                 tasks: {
                     $push: [newTask]
                 }
             }
         });
-        this.setState({ cardsList: nextState});
+        this.setState({ cardsList: nextCards });
+
+        this.dummyRESTAddTask(newTask, nextCards, prevState);
+    }
+
+    dummyRESTAddTask(newTask, nextCards, prevState) {
+        setTimeout(() => {
+            if (newTask.name === 'Invalid') { // rollback state on fake invalid task
+                this.setState({ cardsList: prevState.cardsList });
+                return;
+            }
+            // simulate server reply; update id
+            newTask.id = Date.now();
+            this.setState({ cardsList: nextCards });
+        }, 1500);
     }
 
     deleteTask(cardId, taskId, taskIndex) {
