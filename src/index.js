@@ -8,6 +8,7 @@ import KanbanboardContainer from './KanbanboardContainer';
 import About from './About';
 
 let Health = () => <h1>Health</h1>;
+let handle404 = () => <span>Not found</span>;
 
 class App extends Component {
   render() {
@@ -35,9 +36,10 @@ ReactDOM.render(
     <Route path="/" component={App}>
       <IndexRoute component={KanbanboardContainer} />
       <Route path="/about" component={About} />
-      <Route path="/view/:viewCardId" component={KanbanboardContainer}/>
+      <Route path="/view/:viewCardId" component={KanbanboardContainer} />
       <Route path="/health" component={Health} />
     </Route>
+    <Route path="*" component={handle404} />
   </Router>,
   document.getElementById('root')
 );
