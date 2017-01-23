@@ -1,13 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import CheckList from './CheckList';
 import marked from 'marked';
+import { Link } from 'react-router';
 
 class Card extends Component {
 
     constructor() {
         super(...arguments);
         this.state = {
-            showDetails: false
+            showDetails: this.props.startExpanded
         };
     }
 
@@ -36,6 +37,8 @@ class Card extends Component {
             backgroundColor: this.props.color
         };
 
+        const viewCardLink = <Link to={'/view/' + this.props.id} target="_blank">Open in new tab</Link>;
+
         return (
             <div className="card">
                 <div style={sideColor} />
@@ -43,6 +46,7 @@ class Card extends Component {
                     onClick={this._toggleDetails}>
                     {this.props.title}</div>
                 {cardDetails}
+                {viewCardLink}
             </div>
         );
     }
@@ -64,7 +68,8 @@ Card.propTypes = {
     color: PropTypes.string,
     status: PropTypes.string.isRequired,
     tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
-    taskCallbacks: PropTypes.object
+    taskCallbacks: PropTypes.object,
+    startExpanded: PropTypes.bool
 };
 
 export default Card;

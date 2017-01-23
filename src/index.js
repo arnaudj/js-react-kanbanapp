@@ -35,6 +35,7 @@ ReactDOM.render(
     <Route path="/" component={App}>
       <IndexRoute component={KanbanboardContainer} />
       <Route path="/about" component={About} />
+      <Route path="/view/:viewCardId" component={KanbanboardContainer}/>
       <Route path="/health" component={Health} />
     </Route>
   </Router>,

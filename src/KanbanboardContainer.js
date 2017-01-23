@@ -18,6 +18,7 @@ class KanbanboardContainer extends Component {
         return (
             <Kanbanboard
                 cards={this.state.cardsList}
+                viewCardId={parseInt(this.props.params.viewCardId, 10)}
                 taskCallbacks={{
                     toggle: this.toggleTask.bind(this),
                     delete: this.deleteTask.bind(this),
