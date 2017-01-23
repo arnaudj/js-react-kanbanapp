@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Kanbanboard from './Kanbanboard';
 import Constants from './Constants';
 import 'whatwg-fetch';
-import update from 'react-addons-update'
+import update from 'react-addons-update';
+
 
 class KanbanboardContainer extends Component {
     constructor(props) {
