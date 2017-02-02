@@ -3,9 +3,12 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './styles.css';
 
-import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router';
+import { Router, Route, hashHistory, Link } from 'react-router';
 import KanbanboardContainer from './KanbanboardContainer';
+import Kanbanboard from './Kanbanboard';
 import About from './About';
+import NewCard from './NewCard';
+import EditCard from './EditCard';
 
 let Health = () => <h1>Health</h1>;
 let handle404 = () => <span>Not found</span>;
@@ -33,10 +36,15 @@ ReactDOM.render(
    * </App>
    */
   <Router history={hashHistory}>
-    <Route path="/" component={App}>
-      <IndexRoute component={KanbanboardContainer} />
+    <Route component={App}>
+      <Route component={KanbanboardContainer}>
+        <Route path="/" component={Kanbanboard}>
+          <Route path="new" component={NewCard} />
+          <Route path="edit/:card_id" component={EditCard} />
+          <Route path="view/:viewCardId" component={KanbanboardContainer} />
+        </Route>
+      </Route>
       <Route path="/about" component={About} />
-      <Route path="/view/:viewCardId" component={KanbanboardContainer} />
       <Route path="/health" component={Health} />
     </Route>
     <Route path="*" component={handle404} />
