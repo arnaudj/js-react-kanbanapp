@@ -3,7 +3,7 @@ import CardForm from './CardForm';
 
 class EditCard extends Component {
     componentWillMount() {
-        let card = this.props.cards.find((card) => card.id = this.props.params.card_id);
+        let card = this.props.cards.find((card) => card.id === parseInt(this.props.params.card_id, 10));
         this.setState({ ...card });
     }
 

@@ -36,7 +36,7 @@ class KanbanboardContainer extends Component {
         const prevState = this.state;
 
         // optimistic local update
-        let newTask = { id: Date.now(), done: false, name: taskName }
+        let newTask = { id: Date.now(), done: false, name: taskName };
         let cardIndex = this.state.cardsList.findIndex((card) => card.id === cardId);
         let nextCards = update(this.state.cardsList, {
             [cardIndex]: {

@@ -9,7 +9,7 @@ class List extends Component {
                 description={card.description}
                 color={card.color}
                 tasks={card.tasks}
-                id={card.id}
+                id={typeof (card.id) === 'string' ? parseInt(card.id, 10) : card.id  }
                 status={card.status}
                 taskCallbacks={this.props.taskCallbacks}
                 key={'card' + card.id}
