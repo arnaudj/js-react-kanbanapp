@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Constants from './Constants';
+import Constants from '../Constants';
 import 'whatwg-fetch';
 import update from 'react-addons-update';
 

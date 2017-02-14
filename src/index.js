@@ -4,11 +4,11 @@ import ReactDOM from 'react-dom';
 import './styles.css';
 
 import { Router, Route, hashHistory, Link } from 'react-router';
-import KanbanboardContainer from './KanbanboardContainer';
-import Kanbanboard from './Kanbanboard';
+import KanbanboardContainer from './components/KanbanboardContainer';
+import Kanbanboard from './components/Kanbanboard';
 import About from './About';
-import NewCard from './NewCard';
-import EditCard from './EditCard';
+import NewCard from './components/NewCard';
+import EditCard from './components/EditCard';
 
 let Health = () => <h1>Health</h1>;
 let handle404 = () => <span>Not found</span>;
