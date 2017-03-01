@@ -21,7 +21,7 @@ let TaskActionCreators = {
     },
 
     toggleTask(cardId, task, taskIndex) {
-        AppDispatcher.dispatchAsync(KanbanAPI.toggleTask(cardId, task), {
+        AppDispatcher.dispatchAsync(KanbanAPI.toggleTask(cardId, task, taskIndex), {
             request: constants.TOGGLE_TASK,
             success: constants.TOGGLE_TASK_SUCCESS,
             failure: constants.TOGGLE_TASK_ERROR

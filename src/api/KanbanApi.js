@@ -78,11 +78,11 @@ deleteTask(cardId, taskId, taskIndex) {
     return new Promise((resolve, reject) => resolve(cards));
 },
 
-toggleTask(cardId, taskId, taskIndex) {
-    console.log('toggleTask ', cardId, ' / ', taskId, ' / ', taskIndex);
-    let cardIndex = this.state.cards.findIndex((card) => card.id === cardId);
+toggleTask(cardId, task, taskIndex) {
+    console.log('toggleTask ', cardId, ' / ', task, ' / ', taskIndex);
+    let cardIndex = cards.findIndex((card) => card.id === cardId);
 
-    cards = update(this.state.cards, { // https://facebook.github.io/react/docs/update.html#update
+    cards = update(cards, { // https://facebook.github.io/react/docs/update.html#update
         [cardIndex]: {
             tasks: {
                 [taskIndex]: {
