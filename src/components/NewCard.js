@@ -1,5 +1,6 @@
-import React, { Component, PropTypes } from 'react';
-import CardForm from './CardForm'
+import React, { Component } from 'react';
+import CardForm from './CardForm';
+import CardActionCreators from '../actions/CardActionCreators';
 
 class NewCard extends Component {
     componentWillMount() {
@@ -19,7 +20,7 @@ class NewCard extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.cardCallbacks.addCard(this.state);
+        CardActionCreators.addCard(this.state);
         this.props.router.push('/'); // https://github.com/ReactTraining/react-router/blob/master/docs/API.md#pushpathorloc
     }
 
@@ -37,8 +38,5 @@ class NewCard extends Component {
         );
     }
 }
-NewCard.propTypes = {
-    cardCallbacks: PropTypes.object,
-};
 
 export default NewCard;

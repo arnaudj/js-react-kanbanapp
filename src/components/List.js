@@ -5,16 +5,11 @@ class List extends Component {
     render() {
         const cards = this.props.cards.map((card) =>
             <Card
-                title={card.title}
-                description={card.description}
-                color={card.color}
-                tasks={card.tasks}
-                id={typeof (card.id) === 'string' ? parseInt(card.id, 10) : card.id  }
-                status={card.status}
-                taskCallbacks={this.props.taskCallbacks}
                 key={'card' + card.id}
+                {...card}
+                id={typeof (card.id) === 'string' ? parseInt(card.id, 10) : card.id}
                 startExpanded={this.props.viewCardId === card.id}
-                />);
+            />);
 
         return (
             <div className="list"><h1>{this.props.title}</h1>
@@ -24,9 +19,9 @@ class List extends Component {
 };
 
 List.propTypes = {
+    // XXX Needed as in book?: id: PropTypes.string.isRequired
     title: PropTypes.string.isRequired,
     cards: PropTypes.arrayOf(PropTypes.object),
-    taskCallbacks: PropTypes.object,
     viewCardId: PropTypes.number
 };
 
