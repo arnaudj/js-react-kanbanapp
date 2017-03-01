@@ -8,7 +8,6 @@ class List extends Component {
                 key={'card' + card.id}
                 {...card}
                 id={typeof (card.id) === 'string' ? parseInt(card.id, 10) : card.id}
-                startExpanded={this.props.viewCardId === card.id}
             />);
 
         return (

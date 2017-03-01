@@ -2,23 +2,17 @@ import React, { Component, PropTypes } from 'react';
 import CheckList from './CheckList';
 import marked from 'marked';
 import { Link } from 'react-router';
+import CardActionCreators from '../actions/CardActionCreators';
 
 class Card extends Component {
 
-    constructor() {
-        super(...arguments);
-        this.state = {
-            showDetails: this.props.startExpanded
-        };
-    }
-
     _toggleDetails = () => { // Use Property initializer syntax, to bind this - https://babeljs.io/docs/plugins/transform-class-properties/
-        this.setState({ showDetails: !this.state.showDetails });
+        CardActionCreators.toggleCardDetails(this.props.id);
     }
 
     render() {
         let cardDetails;
-        if (this.state.showDetails) {
+        if (this.props.showDetails) {
             cardDetails = (
                 <div className="card__details">
                     <span dangerouslySetInnerHTML={{ __html: marked(this.props.description) }}></span>
@@ -43,7 +37,7 @@ class Card extends Component {
             <div className="card">
                 <div style={sideColor} />
                 <div className="card__edit"><Link to={'/edit/' + this.props.id}>&#9998;</Link></div>
-                <div className={this.state.showDetails ? "card__title card__title--is-open" : "card__title"}
+                <div className={this.props.showDetails ? "card__title card__title--is-open" : "card__title"}
                     onClick={this._toggleDetails}>
                     {this.props.title}</div>
                 {cardDetails}
@@ -69,7 +63,7 @@ Card.propTypes = {
     color: PropTypes.string,
     status: PropTypes.string.isRequired,
     tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
-    startExpanded: PropTypes.bool
+    showDetails: PropTypes.bool
 };
 
 export default Card;

@@ -1,6 +1,7 @@
 export default {
     API_URL: 'http://localhost:3000',
 
+    TOGGLE_CARD_DETAILS: 'toggle card details',
     CARD: 'card',
     FETCH_CARDS: 'fetch cards',
     FETCH_CARDS_SUCCESS: 'fetch cards success',

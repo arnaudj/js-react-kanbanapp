@@ -4,6 +4,12 @@ import KanbanAPI from '../api/KanbanApi';
 
 let CardActionCreators = {
 
+    toggleCardDetails(cardId) {
+        AppDispatcher.dispatch({
+            type: constants.TOGGLE_CARD_DETAILS,
+            payload: { cardId }
+        });
+    },
     fetchCards() {
         console.log('CardActionCreators.fetchCards()');
         AppDispatcher.dispatchAsync(KanbanAPI.fetchCards(), {
