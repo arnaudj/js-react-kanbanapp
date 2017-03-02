@@ -1,26 +1,21 @@
 import React, { Component } from 'react';
 import CardForm from './CardForm';
+import DraftStore from '../stores/DraftStore';
+import { Container } from 'flux/utils';
 import CardActionCreators from '../actions/CardActionCreators';
 
 class NewCard extends Component {
-    componentWillMount() {
-        this.setState({
-            id: Date.now(),
-            title: '',
-            description: '',
-            status: 'todo',
-            color: '#c9c9c9',
-            tasks: []
-        });
+    componentDidMount() {
+        setTimeout(() => CardActionCreators.createDraft(), 0)
     }
 
     handleChange(field, value) {
-        this.setState({ [field]: value });
+        CardActionCreators.updateDraft(field, value);
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        CardActionCreators.addCard(this.state);
+        CardActionCreators.addCard(this.state.draft);
         this.props.router.push('/'); // https://github.com/ReactTraining/react-router/blob/master/docs/API.md#pushpathorloc
     }
 
@@ -30,7 +25,7 @@ class NewCard extends Component {
 
     render() {
         return (
-            <CardForm draftCard={this.state}
+            <CardForm draftCard={this.state.draft}
                 buttonLabel="Create Card"
                 handleChange={this.handleChange.bind(this)}
                 handleSubmit={this.handleSubmit.bind(this)}
@@ -39,4 +34,8 @@ class NewCard extends Component {
     }
 }
 
-export default NewCard;
+NewCard.getStores = () => ([DraftStore]);
+NewCard.calculateState = (prevState) => ({
+    draft: DraftStore.getState()
+});
+export default Container.create(NewCard);

@@ -17,7 +17,7 @@ class CardStore extends ReduceStore {
     }
 
     reduce(state, action) {
-        console.log('CardStore - action.payload:', action.payload, 'action.type:', action.type, "cards:", this.getState());
+        console.log('CardStore - action.type:', action.type, 'action.payload:', action.payload, "cards:", this.getState());
 
         switch (action.type) {
             case constants.FETCH_CARDS_SUCCESS:

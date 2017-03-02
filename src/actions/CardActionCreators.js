@@ -34,7 +34,18 @@ let CardActionCreators = {
             failure: constants.UPDATE_CARD_ERROR
         }, { card, draftCard });
     },
-
+    createDraft(card) {
+        AppDispatcher.dispatch({
+            type: constants.CREATE_DRAFT,
+            payload: { card }
+        });
+    },
+    updateDraft(field, value) {
+        AppDispatcher.dispatch({
+            type: constants.UPDATE_DRAFT,
+            payload: { field, value }
+        });
+    }
 };
 
 export default CardActionCreators;

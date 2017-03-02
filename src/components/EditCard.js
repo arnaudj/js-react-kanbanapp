@@ -1,23 +1,26 @@
 import React, { Component, PropTypes } from 'react';
 import CardForm from './CardForm';
 import CardStore from '../stores/CardStore';
+import DraftStore from '../stores/DraftStore';
+import { Container } from 'flux/utils';
 import CardActionCreators from '../actions/CardActionCreators';
 
 class EditCard extends Component {
-    componentWillMount() {
-        let card = CardStore.getCard(parseInt(this.props.params.card_id, 10));
-        this.setState(Object.assign({}, card));
+    componentDidMount() {
+        setTimeout(() => {
+            CardActionCreators.createDraft(CardStore.getCard(parseInt(this.props.params.card_id, 10)))
+        }, 0);
     }
 
     handleChange(field, value) {
-        this.setState({ [field]: value });
+        CardActionCreators.updateDraft(field, value);
     }
 
     handleSubmit(e) {
         e.preventDefault();
         CardActionCreators.updateCard(
-            CardStore.getCard(parseInt(this.props.params.card_id, 10)),
-            this.state);
+            CardStore.getCard(parseInt(this.props.params.card_id, 10)), this.state.draft
+        );
         this.props.router.push('/');
     }
 
@@ -27,7 +30,7 @@ class EditCard extends Component {
 
     render() {
         return (
-            <CardForm draftCard={this.state}
+            <CardForm draftCard={this.state.draft}
                 buttonLabel="Edit Card"
                 handleChange={this.handleChange.bind(this)}
                 handleSubmit={this.handleSubmit.bind(this)}
@@ -41,4 +44,8 @@ EditCard.propTypes = {
     cards: PropTypes.array
 }
 
-export default EditCard;
+EditCard.getStores = () => ([DraftStore]);
+EditCard.calculateState = (prevState) => ({
+    draft: DraftStore.getState()
+});
+export default Container.create(EditCard);

@@ -2,6 +2,7 @@ export default {
     API_URL: 'http://localhost:3000',
 
     TOGGLE_CARD_DETAILS: 'toggle card details',
+
     CARD: 'card',
     FETCH_CARDS: 'fetch cards',
     FETCH_CARDS_SUCCESS: 'fetch cards success',
@@ -26,5 +27,8 @@ export default {
 
     TOGGLE_TASK: 'toggle task',
     TOGGLE_TASK_SUCCESS: 'toggle task success',
-    TOGGLE_TASK_ERROR: 'toggle task error'
+    TOGGLE_TASK_ERROR: 'toggle task error',
+
+    CREATE_DRAFT: 'create draft',
+    UPDATE_DRAFT: 'update draft',
 };
