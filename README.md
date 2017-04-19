@@ -1,3 +1,12 @@
+# React Kanban App
+Step by step development of a React Kanban single page application.
+
+Based on the Kanban-style project management tool built throughout the [Pro React book](http://www.pro-react.com/).
+
+![template](https://raw.github.com/arnaudj/js-react-kanbanapp/master/res/static/demo.png)
+
+
+# Create React App
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
